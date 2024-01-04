@@ -65,10 +65,13 @@ new Command({
             }
             requests.push(request)
             fs.writeFileSync(__dirname + "/../data/requests.json", JSON.stringify(requests, null, 2))
-            const filter = async (i) => await i.member.roles.cache.find(r => r.id === process.env.APPROVE_ROLE_ID)
+            const filter = (i) => i.member.roles.cache.find(r => r.id === process.env.APPROVE_ROLE_ID)
             //const filter = async (i) => await i.user.id === "525704336869687316"
-            const buttons = msg.createMessageComponentCollector({filter})
+            const buttons = msg.createMessageComponentCollector()
             buttons.on("collect", (i) => {
+                if (!i.member.roles.cache.find(r => r.id === process.env.APPROVE_ROLE_ID)) {
+                    i.reply(`You need to have the <@${process.env.APPROVE_ROLE_ID}> role to use this command!`, {ephemeral: true})
+                } else {
                 // MESSAGE USER
                 const declineembed = new Discord.EmbedBuilder()
                 .setColor("Red")
@@ -97,6 +100,7 @@ new Command({
                 )
                 actionrow.components[1].setDisabled(true)
                 msg.edit({embeds: [editembed], components: [actionrow]})
+                }
             })
             })
         }
