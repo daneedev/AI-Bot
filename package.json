@@ -1,0 +1,26 @@
+{
+  "name": "ai-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaneeSkripter/AI-Bot.git"
+  },
+  "author": "DaneeSkripter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DaneeSkripter/AI-Bot/issues"
+  },
+  "homepage": "https://github.com/DaneeSkripter/AI-Bot#readme",
+  "dependencies": {
+    "@discordjs/rest": "^2.2.0",
+    "discord-api-types": "^0.37.67",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "gcommands": "^10.0.0"
+  }
+}
