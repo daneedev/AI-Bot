@@ -19,7 +19,13 @@ new Command({
             type: ArgumentType.ATTACHMENT,
             description: "Image to send",
             required: true
-        })
+        }),
+        new Argument({
+            name: "image2",
+            type: ArgumentType.ATTACHMENT,
+            description: "Second image to send",
+            required: false
+        }),
     ],
 	run: (ctx) => {
         if (!ctx.member.roles.cache.find(r => r.id === process.env.APPROVE_ROLE_ID)) {
@@ -30,6 +36,7 @@ new Command({
         } else {
             const requestid = ctx.arguments.getString('requestid')
             const image = ctx.arguments.getAttachment('image')
+            const image2 = ctx.arguments.getAttachment('image2')
             const requests = require("../data/requests.json")
             const request = requests[requestid]
             if (request === undefined) {
@@ -47,8 +54,7 @@ new Command({
                 const embed = new Discord.EmbedBuilder()
                 .setColor("Green")
                 .setTitle(`Your prompt was approved!`)
-                .setDescription(`Your prompt was approved! Here is your image!`)
-                .setImage(image.url)
+                .setDescription(`Your prompt was approved! Here is your image!\n${image.url}\n${image2.url || ""}`)
                 .setFooter({text: `Request ID: ${requestid}`})
                 const user = ctx.client.users.cache.find(u => u.id === request.user)
                 user.send({embeds: [embed]})
