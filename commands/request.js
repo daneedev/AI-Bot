@@ -18,7 +18,7 @@ new Command({
         if (!ctx.member.roles.cache.find(r => r.id === process.env.REQUEST_ROLE_ID)) {
             const errorembed = new Discord.EmbedBuilder()
             .setColor("Red")
-            .setTitle(`You need to have the <@${process.env.REQUEST_ROLE_ID}> role to use this command!`)
+            .setTitle(`You need to have the <@&${process.env.REQUEST_ROLE_ID}> role to use this command!`)
             ctx.reply({embeds: [errorembed], ephemeral: true})
         } else {
             const requests = require("../data/requests.json")
@@ -70,7 +70,7 @@ new Command({
             const buttons = msg.createMessageComponentCollector()
             buttons.on("collect", (i) => {
                 if (!i.member.roles.cache.find(r => r.id === process.env.APPROVE_ROLE_ID)) {
-                    i.reply(`You need to have the <@${process.env.APPROVE_ROLE_ID}> role to use this command!`, {ephemeral: true})
+                    i.reply({ content: `You need to have the <@&${process.env.APPROVE_ROLE_ID}> role to use this command!`, ephemeral: true})
                 } else {
                 // MESSAGE USER
                 const declineembed = new Discord.EmbedBuilder()
