@@ -31,7 +31,7 @@ new Command({
         if (!ctx.member.roles.cache.find(r => r.id === process.env.APPROVE_ROLE_ID)) {
             const errorembed = new Discord.EmbedBuilder()
             .setColor("Red")
-            .setDescription(`You need to have the <@${process.env.APPROVE_ROLE_ID}> role to use this command!`)
+            .setDescription(`You need to have the <@&${process.env.APPROVE_ROLE_ID}> role to use this command!`)
             ctx.reply({embeds: [errorembed], ephemeral: true})
         } else {
             const requestid = ctx.arguments.getString('requestid')
